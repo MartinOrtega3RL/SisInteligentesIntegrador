@@ -21,7 +21,7 @@ export const SoftwareCatalog = () => {
             type="primary" 
             size="small" 
             icon={<EyeOutlined />}
-            onClick={() => window.open(record.enlace, '_blank')}
+            onClick={() => window.open(record.demo, '_blank')} //Aca lo que hace es abrir la demo en una nueva pestaña, osea desde el dataAI, debo de colocar el link de la demo o en este caso alguna ruta si tenemos de manera local
           >
             Ver Demo
           </Button>

@@ -5,13 +5,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Index from "./pages/Index.jsx";
-import NotFound from "./pages/notFound.jsx";
+import Index from "./pages/Index.jsx"; {/* pagina Principal/Contenedor */}
+import NotFound from "./pages/notFound.jsx"; {/* pagina/contenedor */}
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient}>  {/* Aca importo componentes de shadcn */}
     <TooltipProvider>
       <Toaster />
       <Sonner />

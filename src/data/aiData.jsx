@@ -74,7 +74,8 @@ export const softwareData = [
     licencia: 'Apache 2.0',
     año: '2015',
     autor: 'Google',
-    enlace: 'https://tensorflow.org'
+    enlace: 'https://tensorflow.org',
+    demo: 'https://www.tensorflow.org/tutorials'
   },
   {
     key: '2',
@@ -83,7 +84,8 @@ export const softwareData = [
     licencia: 'BSD',
     año: '2016',
     autor: 'Facebook',
-    enlace: 'https://pytorch.org'
+    enlace: 'https://pytorch.org',
+    demo: 'https://pytorch.org/tutorials/'
   },
   {
     key: '3',
@@ -92,7 +94,8 @@ export const softwareData = [
     licencia: 'Apache 2.0',
     año: '2000',
     autor: 'Intel',
-    enlace: 'https://opencv.org'
+    enlace: 'https://opencv.org',
+    demo: 'https://opencv.org/examples/'
   },
   {
     key: '4',
@@ -101,7 +104,8 @@ export const softwareData = [
     licencia: 'BSD',
     año: '2007',
     autor: 'INRIA',
-    enlace: 'https://scikit-learn.org'
+    enlace: 'https://scikit-learn.org',
+    demo: 'https://scikit-learn.org/stable/supervised_learning.html'
   },
   {
     key: '5',
@@ -110,7 +114,8 @@ export const softwareData = [
     licencia: 'MIT',
     año: '2015',
     autor: 'François Chollet',
-    enlace: 'https://keras.io'
+    enlace: 'https://keras.io',
+    demo: 'https://keras.io/examples/'
   }
 ];
 
