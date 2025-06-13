@@ -1,12 +1,61 @@
-# React + Vite
+# SisInteligentesIntegrador
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Integrador de SistemasInteligentes
 
-Currently, two official plugins are available:
+## Descripción
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Este repositorio contiene el proyecto integrador para la asignatura de Sistemas Inteligentes. El objetivo principal de este proyecto es Crear una pagina web interactiva explayando los temas de la materia.
 
-## Expanding the ESLint configuration
+## Tecnologías Utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* JavaScript (94.3%)
+* CSS (5.2%)
+* HTML (0.5%)
+
+## Estructura del Repositorio
+
+El repositorio está estructurado de la siguiente manera:
+
+* **/BackendIA**: Contiene el backend de la aplicación relacionado con la Inteligencia Artificial.
+* **/public**: Contiene los archivos públicos del proyecto.
+* **/src**: Contiene el código fuente principal de la aplicación.
+* `.gitignore`: Especifica los archivos y directorios que Git debe ignorar.
+* `components.json`: Archivo de configuración para componentes.
+* `eslint.config.js`: Archivo de configuración para ESLint.
+* `index.html`: Punto de entrada principal de la aplicación web.
+* `jsconfig.json`: Archivo de configuración para proyectos JavaScript.
+* `package-lock.json`: Registra las versiones exactas de las dependencias.
+* `package.json`: Define las dependencias y scripts del proyecto.
+* `postcss.config.js`: Archivo de configuración para PostCSS.
+* `tailwind.config.js`: Archivo de configuración para Tailwind CSS.
+* `vite.config.js`: Archivo de configuración para Vite.
+
+## Instalación
+
+1. Clona este repositorio: `git clone https://github.com/MartinOrtega3RL/SisInteligentesIntegrador.git`
+2. Navega al directorio del proyecto: `cd SisInteligentesIntegrador`
+3. Instala las dependencias: `npm install`
+
+## Uso
+
+Para iniciar la aplicación en modo de desarrollo, ejecuta:
+
+```bash
+npm run dev
+```
+
+Para construir la aplicación para producción, ejecuta:
+
+```bash
+npm run build
+```
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Si deseas contribuir, por favor sigue estos pasos:
+
+1. Haz un fork del repositorio.
+2. Crea una nueva rama para tu feature (`git checkout -b feature/nueva-funcionalidad`).
+3. Realiza tus cambios y haz commit (`git commit -am 'Añade nueva funcionalidad'`).
+4. Sube tus cambios a tu fork (`git push origin feature/nueva-funcionalidad`).
+5. Crea un Pull Request.
