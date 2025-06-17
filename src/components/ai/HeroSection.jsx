@@ -2,8 +2,9 @@ import React from "react";
 import { Button } from "antd";
 import { motion } from "framer-motion";
 import { RocketOutlined } from "@ant-design/icons";
+import { AudioOutlined, SmileOutlined } from "@ant-design/icons"; // Puedes cambiar SmileOutlined por otro ícono de mano si tienes uno
 
-export const HeroSection = ({ scrollToSection }) => {
+export const HeroSection = ({ scrollToSection,setQuizVisible, onOpenSignSearch  }) => {
   return (
     <section
       id="inicio"
@@ -57,6 +58,15 @@ export const HeroSection = ({ scrollToSection }) => {
             onClick={() => scrollToSection("que-es-ia")}
           >
             Empezar el Recorrido
+          </Button>
+          <Button
+            type="primary"
+            icon={<SmileOutlined />} // Cambia por un ícono de mano si tienes uno
+            size="large"
+            className="bg-white text-purple-600 border-none hover:bg-gray-100 pulse-glow"
+            onClick={onOpenSignSearch}
+          >
+            Buscar por Señas
           </Button>
         </motion.div>
       </div>
