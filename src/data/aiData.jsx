@@ -7,6 +7,8 @@ export const menuItems = [
   { key: 'tipos-aprendizaje', label: 'Tipos de Aprendizaje', icon: 'BookOutlined' },
   { key: 'agentes', label: 'Agentes Inteligentes', icon: 'RobotOutlined' },
   { key: 'busqueda', label: 'Búsqueda Heurística', icon: 'SearchOutlined' }
+  
+
 ];
 
 export const timelineData = [
