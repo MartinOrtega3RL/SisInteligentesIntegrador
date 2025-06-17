@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Menu, Button, Drawer } from 'antd';
 import { motion } from 'framer-motion';
@@ -10,7 +9,8 @@ import {
   BookOutlined,
   RobotOutlined,
   SearchOutlined,
-  MenuOutlined
+  MenuOutlined,
+  MessageOutlined // Nuevo icono para el foro
 } from '@ant-design/icons';
 import { menuItems } from '../../data/aiData';
 
@@ -21,7 +21,8 @@ const iconMap = {
   DeploymentUnitOutlined,
   BookOutlined,
   RobotOutlined,
-  SearchOutlined
+  SearchOutlined,
+  MessageOutlined // Mapeo del nuevo icono
 };
 
 export const Navigation = ({
@@ -29,12 +30,20 @@ export const Navigation = ({
   setMobileMenuVisible,
   scrollToSection
 }) => {
-  const menuItemsWithIcons = menuItems.map(item => ({
-    key: item.key,
-    icon: React.createElement(iconMap[item.icon]),
-    label: item.label,
-    onClick: () => scrollToSection(item.key)
-  }));
+  const menuItemsWithIcons = [
+    ...menuItems.map(item => ({
+      key: item.key,
+      icon: React.createElement(iconMap[item.icon]),
+      label: item.label,
+      onClick: () => scrollToSection(item.key)
+    })),
+    {
+      key: 'foro', // Nueva key para el foro
+      icon: <MessageOutlined />, // Icono del foro
+      label: 'Foro',
+      onClick: () => window.location.href = '/foro' // Redirección a /foro
+    }
+  ];
 
   return (
     <>
@@ -81,8 +90,12 @@ export const Navigation = ({
           items={menuItemsWithIcons.map(item => ({
             ...item,
             onClick: () => {
-              scrollToSection(item.key);
-              setMobileMenuVisible(false);
+              if (item.key === 'foro') {
+                window.location.href = '/foro'; // Redirección para el foro en el menú móvil
+              } else {
+                scrollToSection(item.key);
+                setMobileMenuVisible(false);
+              }
             }
           }))}
         />
