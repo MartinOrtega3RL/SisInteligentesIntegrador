@@ -71,7 +71,7 @@ const Index = () => {
           onCancel={() => setSignSearchVisible(false)}
           footer={null}
           title="Buscar en la página usando señas"
-          destroyOnClose={true}
+          destroyOnHidden ={true}
           width={900}
           styles={{
             body: {
