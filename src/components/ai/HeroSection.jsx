@@ -2,9 +2,9 @@ import React from "react";
 import { Button } from "antd";
 import { motion } from "framer-motion";
 import { RocketOutlined } from "@ant-design/icons";
-import { AudioOutlined, SmileOutlined } from "@ant-design/icons"; // Puedes cambiar SmileOutlined por otro ícono de mano si tienes uno
+import { AudioOutlined, SmileOutlined, RobotOutlined } from "@ant-design/icons"; // Puedes cambiar SmileOutlined por otro ícono de mano si tienes uno
 
-export const HeroSection = ({ scrollToSection,setQuizVisible, onOpenSignSearch  }) => {
+export const HeroSection = ({ scrollToSection, onOpenSignSearch }) => {
   return (
     <section
       id="inicio"
@@ -67,6 +67,15 @@ export const HeroSection = ({ scrollToSection,setQuizVisible, onOpenSignSearch  
             onClick={onOpenSignSearch}
           >
             Buscar por Señas
+          </Button>
+          <Button
+            type="primary"
+            icon={<RobotOutlined />} // Cambia por un ícono de mano si tienes uno
+            size="large"
+            className="bg-white text-purple-600 border-none hover:bg-gray-100 pulse-glow"
+            onClick={() => (window.location.href = "http://192.168.1.12:8501/")}
+          >
+            Ingresar al ChatBot
           </Button>
         </motion.div>
       </div>

@@ -97,7 +97,7 @@ export const softwareData = [
     año: '2000',
     autor: 'Intel',
     enlace: 'https://opencv.org',
-    demo: 'https://opencv.org/examples/'
+    demo: 'https://opencv.org/blog/vision-language-models/'
   },
   {
     key: '4',

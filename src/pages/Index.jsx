@@ -157,7 +157,7 @@ const Index = () => {
               </div>
             </TabPane>
             <TabPane tab="Historia" key="2">
-              <Timeline items={timelineData.slice(0, 4)} />
+              <Timeline items={timelineData.slice(0, 4)} mode="alternate" />
             </TabPane>
           </Tabs>
         </div>
@@ -464,7 +464,7 @@ const Index = () => {
                 </p>
                 <div className="text-left space-y-2">
                   <p>
-                    <strong>Ejemplos:</strong>
+                    <strong >Ejemplos:</strong>
                   </p>
                   <ul className="text-sm space-y-1">
                     <li>• Juegos (AlphaGo, Chess)</li>
@@ -504,7 +504,7 @@ const Index = () => {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-ai-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
+                  <div className="w-6 h-6 bg-ai-primary bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
                     1
                   </div>
                   <div>
@@ -515,7 +515,7 @@ const Index = () => {
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-ai-secondary rounded-full flex items-center justify-center text-white text-sm font-bold">
+                  <div className="w-6 h-6 bg-ai-secondary bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
                     2
                   </div>
                   <div>
@@ -526,7 +526,7 @@ const Index = () => {
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <div className="w-6 h-6 bg-ai-accent rounded-full flex items-center justify-center text-white text-sm font-bold">
+                  <div className="w-6 h-6 bg-ai-accent bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
                     3
                   </div>
                   <div>
@@ -648,20 +648,20 @@ const Index = () => {
                 Algoritmos Principales
               </h3>
               <div className="space-y-3">
-                <div className="border-l-4 border-ai-primary pl-4">
+                <div className="border-l-4 border-ai-primary border-purple-500 pl-4">
                   <h4 className="font-semibold">A* (A-estrella)</h4>
                   <p className="text-sm text-muted-foreground">
                     Encuentra el camino más corto usando costo real +
                     estimación heurística
                   </p>
                 </div>
-                <div className="border-l-4 border-ai-secondary pl-4">
+                <div className="border-l-4 border-ai-secondary border-purple-500 pl-4">
                   <h4 className="font-semibold">Algoritmos Genéticos</h4>
                   <p className="text-sm text-muted-foreground">
                     Inspirados en la evolución natural para optimización
                   </p>
                 </div>
-                <div className="border-l-4 border-ai-accent pl-4">
+                <div className="border-l-4 border-ai-accent border-purple-500 pl-4">
                   <h4 className="font-semibold">Simulated Annealing</h4>
                   <p className="text-sm text-muted-foreground">
                     Basado en el proceso de enfriamiento de metales
