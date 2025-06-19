@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import Webcam from "react-webcam";
-import { Input, Button, Typography, Space } from "antd";
+import { Input, Button, Typography, Space, Row, Col } from "antd";
 import { DeleteOutlined, SearchOutlined } from "@ant-design/icons";
-import signAlphabetImg from "../../assets/signASL.webp"; // Asegúrate de que la ruta sea correcta
+import signAlphabetImg from "../../assets/signASL.webp";
 
 const API_URL = "http://localhost:8000/predict";
 
@@ -77,13 +77,12 @@ function SignSearch({ onClose }) {
         }
       })
       .catch((err) => {
-        // Puedes mostrar un error aquí si quieres
         console.error("Error al obtener predicción:", err);
       });
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(capture, 2000); // cada 2 segundos
+    const interval = setInterval(capture, 2000);
     return () => clearInterval(interval);
   }, [capture]);
 
@@ -110,84 +109,106 @@ function SignSearch({ onClose }) {
   };
 
   return (
-    <div style={{ textAlign: "center", padding: 16 }}>
-      <Typography.Title level={3} style={{ marginBottom: 8 }}>
+    <div
+      style={{
+        textAlign: "center",
+        padding: 16,
+        maxWidth: 900,
+        margin: "0 auto",
+      }}
+    >
+      <Typography.Title level={3} style={{ marginBottom: 24 }}>
         Buscar usando Señas
       </Typography.Title>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          gap: 32,
-          marginBottom: 24,
-          flexWrap: "wrap",
-        }}
-      >
+
+      <Row gutter={[24, 24]} justify="center" align="middle">
         {/* Webcam */}
-        <div style={{ position: "relative", minWidth: 350 }}>
-          <Webcam
-            audio={false}
-            ref={webcamRef}
-            screenshotFormat="image/jpeg"
-            width={350}
-            height={260}
-            style={{ borderRadius: 12, border: "2px solid #e5e7eb" }}
-            videoConstraints={{
-              width: 350,
-              height: 260,
-              facingMode: "user",
-            }}
-            mirrored={true}
-          />
+        <Col
+          xs={24}
+          md={12}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <div style={{ position: "relative" }}>
+            <Webcam
+              audio={false}
+              ref={webcamRef}
+              screenshotFormat="image/jpeg"
+              width={350}
+              height={260}
+              style={{ borderRadius: 12, border: "2px solid #e5e7eb" }}
+              videoConstraints={{
+                width: 350,
+                height: 260,
+                facingMode: "user",
+              }}
+              mirrored={true}
+            />
+            <div
+              style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                width: 180,
+                height: 180,
+                transform: "translate(-50%, -50%)",
+                border: "2px dashed #1677ff",
+                borderRadius: 8,
+                pointerEvents: "none",
+                boxSizing: "border-box",
+              }}
+            ></div>
+          </div>
+        </Col>
+
+        {/* Imagen de ejemplo */}
+        <Col
+          xs={24}
+          md={12}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
           <div
             style={{
-              position: "absolute",
-              left: "50%",
-              top: "50%",
-              width: 180,
-              height: 180,
-              transform: "translate(-50%, -50%)",
-              border: "2px dashed #1677ff",
-              borderRadius: 8,
-              pointerEvents: "none",
-              boxSizing: "border-box",
-            }}
-          ></div>
-        </div>
-        {/* Imagen de ejemplo */}
-        <div
-          style={{
-            background: "#f8fafc",
-            borderRadius: 12,
-            border: "1px solid #e5e7eb",
-            padding: 16,
-            maxWidth: 350,
-            minWidth: 250,
-            boxShadow: "0 2px 8px #0001",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Typography.Text strong style={{ marginBottom: 8 }}>
-            Ejemplo de abecedario en señas:
-          </Typography.Text>
-          <img
-            src={signAlphabetImg}
-            alt="Ejemplo de abecedario en señas"
-            style={{
-              width: "100%",
-              maxWidth: 320,
-              borderRadius: 8,
+              background: "#f8fafc",
+              borderRadius: 12,
               border: "1px solid #e5e7eb",
-              background: "#fff",
+              padding: 16,
+              maxWidth: 350,
+              boxShadow: "0 2px 8px #0001",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
-          />
-        </div>
-      </div>
-      <Space direction="vertical" style={{ width: "100%" }}>
-        <Typography.Text>
+          >
+            <Typography.Text strong style={{ marginBottom: 12 }}>
+              Ejemplo de abecedario en señas
+            </Typography.Text>
+            <img
+              src={signAlphabetImg}
+              alt="Ejemplo de abecedario en señas"
+              style={{
+                width: "100%",
+                height: "auto",
+                maxWidth: 250,
+                borderRadius: 8,
+                border: "1px solid #e5e7eb",
+                background: "#fff",
+              }}
+            />
+          </div>
+        </Col>
+      </Row>
+
+      <Space
+        direction="vertical"
+        style={{
+          width: "100%",
+          marginTop: 24,
+          maxWidth: 600,
+          margin: "24px auto 0",
+        }}
+        align="center"
+      >
+        <Typography.Text style={{ minHeight: 24 }}>
           {prediction && (
             <>
               Letra detectada:{" "}
@@ -198,35 +219,34 @@ function SignSearch({ onClose }) {
             </>
           )}
         </Typography.Text>
+
         <Input
           value={typedText}
-          onChange={(e) => setTypedText(e.target.value)}
+          readOnly
           placeholder="Las letras aparecerán aquí..."
           style={{
-            fontSize: 20,
+            fontSize: 18,
             textAlign: "center",
-            marginTop: 8,
+            height: 46,
             background: "#f5f5f5",
+            width: "100%",
           }}
         />
-        {typedText.length >= 3 && matchedSection && (
-          <Button
-            type="primary"
-            icon={<SearchOutlined />}
-            style={{ marginTop: 8 }}
-            onClick={handleSearch}
-          >
-            Ir a sección "{matchedSection.replace(/-/g, " ")}"
+
+        <Space style={{ marginTop: 16 }}>
+          {typedText.length >= 3 && matchedSection && (
+            <Button
+              type="primary"
+              icon={<SearchOutlined />}
+              onClick={handleSearch}
+            >
+              Ir a sección "{matchedSection.replace(/-/g, " ")}"
+            </Button>
+          )}
+          <Button icon={<DeleteOutlined />} onClick={handleClear} danger>
+            Limpiar
           </Button>
-        )}
-        <Button
-          icon={<DeleteOutlined />}
-          onClick={handleClear}
-          danger
-          style={{ marginTop: 8 }}
-        >
-          Limpiar
-        </Button>
+        </Space>
       </Space>
     </div>
   );
