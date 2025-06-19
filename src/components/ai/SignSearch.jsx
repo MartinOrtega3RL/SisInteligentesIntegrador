@@ -1,11 +1,37 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import Webcam from "react-webcam";
 import { Input, Button, Typography, Space } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, SearchOutlined } from "@ant-design/icons";
 
 const API_URL = "http://localhost:8000/predict";
 
-function SignSearch() {
+const SECTION_IDS = [
+    "que-es-ia",
+    "machine-learning",
+    "deep-learning",
+    "tipos-aprendizaje",
+    "agentes",
+    "busqueda"
+];
+
+const cropCenterSquare = async (imageSrc, cropSize = 180) => {
+    return new Promise((resolve) => {
+        const img = new window.Image();
+        img.onload = function () {
+            const canvas = document.createElement("canvas");
+            canvas.width = cropSize;
+            canvas.height = cropSize;
+            const ctx = canvas.getContext("2d");
+            const x = (img.width - cropSize) / 2;
+            const y = (img.height - cropSize) / 2;
+            ctx.drawImage(img, x, y, cropSize, cropSize, 0, 0, cropSize, cropSize);
+            canvas.toBlob((blob) => resolve(blob), "image/jpeg");
+        };
+        img.src = imageSrc;
+    });
+};
+
+function SignSearch({ onClose }) {
     const webcamRef = useRef(null);
     const [prediction, setPrediction] = useState("");
     const [confidence, setConfidence] = useState(0);
@@ -17,11 +43,10 @@ function SignSearch() {
         if (!webcamRef.current) return;
         const imageSrc = webcamRef.current.getScreenshot();
         if (!imageSrc) return;
+        const croppedBlob = await cropCenterSquare(imageSrc, 180);
 
-        const res = await fetch(imageSrc);
-        const blob = await res.blob();
         const formData = new FormData();
-        formData.append("file", blob, "snapshot.jpg");
+        formData.append("file", croppedBlob, "snapshot.jpg");
 
         fetch(API_URL, {
             method: "POST",
@@ -53,6 +78,10 @@ function SignSearch() {
                     lastAddedRef.current = "";
                     setPredBuffer([]);
                 }
+            })
+            .catch((err) => {
+                // Puedes mostrar un error aquí si quieres
+                console.error("Error al obtener predicción:", err);
             });
     }, []);
 
@@ -67,6 +96,20 @@ function SignSearch() {
         setConfidence(0);
         lastAddedRef.current = "";
         setPredBuffer([]);
+    };
+
+    const matchedSection = SECTION_IDS.find(id =>
+        typedText.toLowerCase().slice(0, 3) === id.slice(0, 3)
+    );
+
+    const handleSearch = () => {
+        if (matchedSection) {
+            const el = document.getElementById(matchedSection);
+            if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+                if (onClose) onClose();
+            }
+        }
     };
 
     return (
@@ -94,7 +137,22 @@ function SignSearch() {
                         height: 260,
                         facingMode: "user",
                     }}
+                    mirrored={true}
                 />
+                <div
+                    style={{
+                        position: "absolute",
+                        left: "50%",
+                        top: "50%",
+                        width: 180,
+                        height: 180,
+                        transform: "translate(-50%, -50%)",
+                        border: "2px dashed #1677ff",
+                        borderRadius: 8,
+                        pointerEvents: "none",
+                        boxSizing: "border-box",
+                    }}
+                ></div>
             </div>
             <Space direction="vertical" style={{ width: "100%" }}>
                 <Typography.Text>
@@ -110,7 +168,7 @@ function SignSearch() {
                 </Typography.Text>
                 <Input
                     value={typedText}
-                    readOnly
+                    onChange={e => setTypedText(e.target.value)}
                     placeholder="Las letras aparecerán aquí..."
                     style={{
                         fontSize: 20,
@@ -119,6 +177,16 @@ function SignSearch() {
                         background: "#f5f5f5",
                     }}
                 />
+                {typedText.length >= 3 && matchedSection && (
+                    <Button
+                        type="primary"
+                        icon={<SearchOutlined />}
+                        style={{ marginTop: 8 }}
+                        onClick={handleSearch}
+                    >
+                        Ir a sección "{matchedSection.replace(/-/g, " ")}"
+                    </Button>
+                )}
                 <Button
                     icon={<DeleteOutlined />}
                     onClick={handleClear}
