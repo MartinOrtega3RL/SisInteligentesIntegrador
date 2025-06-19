@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect, useCallback } from "react";
 import Webcam from "react-webcam";
 import { Input, Button, Typography, Space } from "antd";
 import { DeleteOutlined, SearchOutlined } from "@ant-design/icons";
+import signAlphabetImg from "../../assets/signASL.jpg"; // Asegúrate de que la ruta sea correcta
 
 const API_URL = "http://localhost:8000/predict";
 
@@ -121,38 +122,73 @@ function SignSearch({ onClose }) {
                 style={{
                     display: "flex",
                     justifyContent: "center",
-                    marginBottom: 16,
-                    position: "relative",
+                    alignItems: "flex-start",
+                    gap: 32,
+                    marginBottom: 24,
+                    flexWrap: "wrap",
                 }}
             >
-                <Webcam
-                    audio={false}
-                    ref={webcamRef}
-                    screenshotFormat="image/jpeg"
-                    width={350}
-                    height={260}
-                    style={{ borderRadius: 12, border: "2px solid #e5e7eb" }}
-                    videoConstraints={{
-                        width: 350,
-                        height: 260,
-                        facingMode: "user",
-                    }}
-                    mirrored={true}
-                />
+                {/* Webcam */}
+                <div style={{ position: "relative", minWidth: 350 }}>
+                    <Webcam
+                        audio={false}
+                        ref={webcamRef}
+                        screenshotFormat="image/jpeg"
+                        width={350}
+                        height={260}
+                        style={{ borderRadius: 12, border: "2px solid #e5e7eb" }}
+                        videoConstraints={{
+                            width: 350,
+                            height: 260,
+                            facingMode: "user",
+                        }}
+                        mirrored={true}
+                    />
+                    <div
+                        style={{
+                            position: "absolute",
+                            left: "50%",
+                            top: "50%",
+                            width: 180,
+                            height: 180,
+                            transform: "translate(-50%, -50%)",
+                            border: "2px dashed #1677ff",
+                            borderRadius: 8,
+                            pointerEvents: "none",
+                            boxSizing: "border-box",
+                        }}
+                    ></div>
+                </div>
+                {/* Imagen de ejemplo */}
                 <div
                     style={{
-                        position: "absolute",
-                        left: "50%",
-                        top: "50%",
-                        width: 180,
-                        height: 180,
-                        transform: "translate(-50%, -50%)",
-                        border: "2px dashed #1677ff",
-                        borderRadius: 8,
-                        pointerEvents: "none",
-                        boxSizing: "border-box",
+                        background: "#f8fafc",
+                        borderRadius: 12,
+                        border: "1px solid #e5e7eb",
+                        padding: 16,
+                        maxWidth: 350,
+                        minWidth: 250,
+                        boxShadow: "0 2px 8px #0001",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
                     }}
-                ></div>
+                >
+                    <Typography.Text strong style={{ marginBottom: 8 }}>
+                        Ejemplo de abecedario en señas:
+                    </Typography.Text>
+                    <img
+                        src={signAlphabetImg}
+                        alt="Ejemplo de abecedario en señas"
+                        style={{
+                            width: "100%",
+                            maxWidth: 320,
+                            borderRadius: 8,
+                            border: "1px solid #e5e7eb",
+                            background: "#fff",
+                        }}
+                    />
+                </div>
             </div>
             <Space direction="vertical" style={{ width: "100%" }}>
                 <Typography.Text>
